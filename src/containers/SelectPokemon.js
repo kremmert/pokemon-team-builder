@@ -1,11 +1,9 @@
 import React from "react";
 import Select from "react-select";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { addPokemonToTeam } from "../store/actions/pokemon";
-
-const options = [
-	{ value: "bulbasaur", label: "Bulbasaur" }
-];
+import Options from "../services/optionList";
 
 class SelectPokemon extends React.Component {
 	constructor(props) {
@@ -15,11 +13,12 @@ class SelectPokemon extends React.Component {
 	}
 
 	handleChange(e) {
-		//this.props.history.push("/addPokemon");
-		// e.value
-		this.props.addPokemonToTeam(e.value);
+		if(this.props.numPokemon >= 6) {
+			return;
+		}
 
-		debugger
+		this.props.addPokemonToTeam(e.value);
+		this.props.history.push("/addPokemon");
 	}
 
 	handleSubmit(e) {
@@ -28,7 +27,9 @@ class SelectPokemon extends React.Component {
 	render() {
 		return (
 			<Select 
-				options={options} 
+				id="select"
+				placeholder={"Choose Your Pok\u00E9mon!"}
+				options={Options} 
 				onChange={this.handleChange}
 			/>
 		);
@@ -37,8 +38,8 @@ class SelectPokemon extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		numPokemon: state.numPokemon
+		numPokemon: state.pokemon.numPokemon
 	}
 }
 
-export default connect(mapStateToProps, { addPokemonToTeam })(SelectPokemon)
+export default withRouter(connect(mapStateToProps, { addPokemonToTeam })(SelectPokemon));

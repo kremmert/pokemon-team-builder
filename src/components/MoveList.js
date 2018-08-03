@@ -1,11 +1,14 @@
 import React from "react";
-import Move from "./Move"
+
+const Move = ({moveName}) => (
+	<p>{moveName}</p>
+);
 
 const MoveList = props => {
 	const {moves} = props;
 	const moveList = moves.map( (move,i) => (
 		<Move 
-			moveName={move.name} 
+			moveName={move} 
 			key={i}
 		/>
 	));

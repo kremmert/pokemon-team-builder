@@ -1,15 +1,37 @@
 import React from "react";
 import Homepage from "../components/Homepage";
+import AddPokemon from "./AddPokemon";
 import { Switch, Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { removePokemonFromTeam } from "../store/actions/pokemon"
+import { removePokemonFromTeam, editPokemonInTeam } from "../store/actions/pokemon"
 
 const Main = props => {
-	const {pokemon, removePokemonFromTeam} = props;
+	const {team, removePokemonFromTeam, editPokemonInTeam} = props;
 	return (
 		<div className="container">
 			<Switch>
-				<Route exact path="/" render={props => <Homepage pokemon={pokemon} removePokemon={removePokemonFromTeam} {...props} />} />
+				<Route exact path="/" render={props => {
+					return (
+						<Homepage team={team} 
+						removePokemon={removePokemonFromTeam} 
+						editPokemon={editPokemonInTeam}
+						{...props} />
+					)
+				}}/>
+				<Route exact path="/addPokemon" render={props => {
+					return (
+						<AddPokemon 
+							{...props}
+						/>
+					)
+				}}/>
+				<Route exact path="/editPokemon" render={props => {
+					return (
+						<AddPokemon 
+							{...props}
+						/>
+					)
+				}}/>
 			</Switch>
 		</div>
 	);
@@ -17,8 +39,8 @@ const Main = props => {
 
 function mapStateToProps(state) {
 	return {
-		pokemon: state.pokemon
+		team: state.pokemon.team
 	};
 }
 
-export default withRouter(connect(mapStateToProps, { removePokemonFromTeam })(Main));
+export default withRouter(connect(mapStateToProps, { removePokemonFromTeam, editPokemonInTeam })(Main));

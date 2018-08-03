@@ -1,13 +1,16 @@
 import React from "react";
 import TeamMember from "./TeamMember";
 
-const TeamMemberList = ({ pokemon, removePokemon }) => {
-	const teamList = pokemon.team.map((member,i) => (
-		<TeamMember 
+// change member.moves to member.moveList once api connected
+
+const TeamMemberList = ({ team, removePokemon, editPokemon }) => {
+	const teamList = team.map((member,i) => (
+		<TeamMember
 			name={member.name}
 			sprite={member.sprites}
-			moves={member.moves}
-			removePokemon={removePokemon.bind(this, member.name.toLowerCase())}
+			moves={member.moveList}
+			removePokemon={removePokemon.bind(this, member)}
+			editPokemon={editPokemon.bind(this, member)}
 			key={i}
 		/>
 	));

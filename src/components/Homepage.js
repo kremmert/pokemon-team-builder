@@ -2,9 +2,9 @@ import React from "react";
 import TeamMemberList from "./TeamMemberList";
 import SelectPokemon from "../containers/SelectPokemon";
 
-const Homepage = ({ pokemon, removePokemon }) => (
+const Homepage = ({ team, removePokemon, editPokemon }) => (
 	<div>
-		<TeamMemberList pokemon={pokemon} removePokemon={removePokemon} />
+		<TeamMemberList team={team} removePokemon={removePokemon} editPokemon={editPokemon} />
 		<SelectPokemon />
 	</div>
 );
