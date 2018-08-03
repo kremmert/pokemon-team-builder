@@ -9,7 +9,7 @@ const store = configureStore();
 
 const App = () => (
   <Provider store={store}>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <div className="App">
             <Navbar />
             <Main />

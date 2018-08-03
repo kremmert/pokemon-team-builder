@@ -18,7 +18,7 @@ class SelectPokemon extends React.Component {
 		}
 
 		this.props.addPokemonToTeam(e.value);
-		this.props.history.push("/addPokemon");
+		this.props.history.push(process.env.PUBLIC_URL + "/addPokemon");
 	}
 
 	handleSubmit(e) {
