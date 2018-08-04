@@ -4,24 +4,24 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import MoveTableRow from "./MoveTableRow";
 import MoveList from "../components/MoveList";
+import { capitalize } from "../services/api";
 
-const AddPokemon = ({pokemon}) => {
+const AddPokemon = ({pokemon, moveList}) => {
+	debugger
 	return (
 		<div className="container">
+			<h1 className="d-flex justify-content-center pokeName"> Moveset: {capitalize(pokemon.name)} </h1>
 			<div className="d-flex justify-content-center">
 				<div id="pokeInfo">
-					<img className="rounded addTeamMemberSprite" src={pokemon.sprite || DefaultSprite} alt="Pokemon Sprite" />
-					<span className="pokeName">
-						{pokemon.name}
-					</span>
-					<MoveList moves={pokemon.moveList}/>
+					<img className="rounded addTeamMemberSprite" src={pokemon.sprites.front_default || DefaultSprite} alt="Pokemon Sprite" />
+					<MoveList moves={moveList}/>
 				</div>
 				<table className="table table-hover moveList">
 					<MoveTableHeader />
 					<MoveTableRow pokemon={pokemon} moves={pokemon.moves} />
 				</table>
 			</div>
-			<Link to="/" className="btn btn-primary btn-block"> Your Team </Link>
+			<Link to="/" className="btn btn-primary btn-block toTeam"> Your Team </Link>
 		</div>
 	)
 }
@@ -44,7 +44,8 @@ const MoveTableHeader = () => {
 
 function mapStateToProps(state) {
 	return {
-		pokemon: state.pokemon.lastPokemon
+		pokemon: state.pokemon.lastPokemon,
+		moveList: state.pokemon.lastPokemon.moveList
 	}
 }
 

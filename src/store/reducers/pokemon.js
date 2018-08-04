@@ -1,80 +1,7 @@
 import { ADD_POKEMON, REMOVE_POKEMON, EDIT_POKEMON, ADD_MOVE, REMOVE_MOVE } from "../actionTypes";
 
 const DEFAULT_STATE = {
-	team: [
-		{
-			name: "bulbasaur",
-			moves: [
-				{
-					name: "razorleaf"
-				},
-				{
-					name: "tackle"
-				}
-			],
-			moveList: ["tackle", "razorleaf","thunderbolt","ice beam"]
-		},
-		{
-			name: "charmander",
-			moves: [
-				{
-					name: "razorleaf"
-				},
-				{
-					name: "tackle"
-				}
-			],
-			moveList: ["tackle", "razorleaf","thunderbolt","ice beam"]
-		},
-		{
-			name: "squirtle",
-			moves: [
-				{
-					name: "razorleaf"
-				},
-				{
-					name: "tackle"
-				}
-			],
-			moveList: ["tackle", "razorleaf","thunderbolt","ice beam"]
-		},
-		{
-			name: "pikachu",
-			moves: [
-				{
-					name: "razorleaf"
-				},
-				{
-					name: "tackle"
-				}
-			],
-			moveList: ["tackle", "razorleaf","thunderbolt","ice beam"]
-		},
-		{
-			name: "eevee",
-			moves: [
-				{
-					name: "razorleaf"
-				},
-				{
-					name: "tackle"
-				}
-			],
-			moveList: ["tackle", "razorleaf","thunderbolt","ice beam"]
-		},
-		{
-			name: "pidgey",
-			moves: [
-				{
-					name: "razorleaf"
-				},
-				{
-					name: "tackle"
-				}
-			],
-			moveList: ["tackle", "razorleaf","thunderbolt","ice beam"]
-		}
-	],
+	team: [],
 	numPokemon: 0,
 	lastPokemon: {}
 }
@@ -82,6 +9,7 @@ const DEFAULT_STATE = {
 export default (state=DEFAULT_STATE, action) => {
 	switch(action.type) {
 		case ADD_POKEMON:
+			debugger
 			var teamNumber = state.numPokemon + 1;
 			return {...state, team: [...state.team, action.pokemon], numPokemon: teamNumber, lastPokemon: action.pokemon};
 		case REMOVE_POKEMON:

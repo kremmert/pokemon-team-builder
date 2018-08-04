@@ -12,13 +12,13 @@ class SelectPokemon extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleChange(e) {
+	async handleChange(e) {
 		if(this.props.numPokemon >= 6) {
 			return;
 		}
 
-		this.props.addPokemonToTeam(e.value);
-		this.props.history.push(process.env.PUBLIC_URL + "/addPokemon");
+		await this.props.addPokemonToTeam(e.id);
+		this.props.history.push("/addPokemon");
 	}
 
 	handleSubmit(e) {

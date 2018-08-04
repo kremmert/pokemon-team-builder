@@ -1,4 +1,5 @@
 import { ADD_POKEMON, REMOVE_POKEMON, EDIT_POKEMON, ADD_MOVE, REMOVE_MOVE } from "../actionTypes";
+import { addError, removeError } from "./errors";
 import { getPokemon } from "../../services/api";
 
 export const addPokemon = pokemon => ({
@@ -28,37 +29,14 @@ export const removeMove = (pokemon, move) => ({
 	move
 });
 
-export const addPokemonToTeam = pokemon => {
+export const addPokemonToTeam = id => {
 	return dispatch => {
-		let poke = {name: pokemon, moves: [
-				{
-					name: "razorleaf"
-				},
-				{
-					name: "tackle"
-				},
-				{
-					name: "growl"
-				},
-				{
-					name: "swords dance"
-				},
-				{
-					name: "leaf blade"
-				},
-				{
-					name: "ice beam"
-				},
-				{
-					name: "thunder"
-				}
-			],
-			moveList: []
-		}
-
-		//remember to add moveList to pokemon object
-		//getPokemon(pokemon);
-		dispatch(addPokemon(poke));
+		return getPokemon(id)
+		.then( pokemon => {
+			pokemon["moveList"] = []
+			console.log(pokemon);
+			dispatch( addPokemon(pokemon) );
+		}).catch( err => dispatch( addError(err.message) ));
 	}
 }
 

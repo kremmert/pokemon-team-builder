@@ -1,10 +1,12 @@
 import React from "react";
+import { capitalize } from "../services/api";
 
 const Move = ({moveName}) => (
-	<p>{moveName}</p>
+	<p className="move">{capitalize(moveName)}</p>
 );
 
 const MoveList = props => {
+	debugger
 	const {moves} = props;
 	const moveList = moves.map( (move,i) => (
 		<Move 

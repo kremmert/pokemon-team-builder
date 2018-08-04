@@ -1,9 +1,23 @@
 var Pokedex = require("pokedex-promise-v2");
-var P = new Pokedex();
+var options = {
+  protocol: 'https',
+  versionPath: '/api/v2/'
+}
+var P = new Pokedex(options);
 
-export function getPokemon(name) {
-	P.getPokemonByName("eevee")
-	.then(res => console.log(res));
+export function getPokemon(id) {
+	return new Promise((resolve, reject) => {
+		return P.getPokemonByName(id)
+		.then(res => { return resolve(res) })
+		.catch(err => { return reject(err.response.data.error) });
+	});
+}
+
+export function capitalize(str) {
+	var find = '-';
+	var re = new RegExp(find, 'g');
+	str = str.replace(re, " ");
+	return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 

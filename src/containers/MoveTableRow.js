@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { addMoveToList, removeMoveFromList } from "../store/actions/pokemon";
 import { getType, getCategory } from "../services/moveTypes";
+import { capitalize } from "../services/api";
 
 class MoveTableRow extends React.Component {
 	constructor(props) {
@@ -18,7 +19,7 @@ class MoveTableRow extends React.Component {
 
 		for(var i = 0; i < this.props.pokemon.moveList.length; i++) {
 			for(var j = 0; j < this.props.moves.length; j++) {
-				if(this.props.pokemon.moveList[i] === this.props.moves[j].name) {
+				if(this.props.pokemon.moveList[i] === this.props.moves[j].move.name) {
 					updatedMoveState[j] = true;
 				}
 			}
@@ -54,14 +55,14 @@ class MoveTableRow extends React.Component {
 
 	render() {
 		const { moves } = this.props;
-		const moveList = moves.map( (move, i) => (
+		const moveList = moves.map( (m, i) => (
 			<tr 
 				className={this.state.moveState[i] ? "table-info" : null}
-				value={move.name}
+				value={m.move.name}
 				onClick={this.handleClick}
 				key={i}
 			>
-				<th scope="row"> {move.name} </th>
+				<th scope="row"> {capitalize(m.move.name)} </th>
 				<td> 2 </td>
 				<td> 3 </td>
 				<td> 4 </td>

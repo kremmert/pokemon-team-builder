@@ -7,7 +7,7 @@ const TeamMemberList = ({ team, removePokemon, editPokemon }) => {
 	const teamList = team.map((member,i) => (
 		<TeamMember
 			name={member.name}
-			sprite={member.sprites}
+			sprite={member.sprites.front_default}
 			moves={member.moveList}
 			removePokemon={removePokemon.bind(this, member)}
 			editPokemon={editPokemon.bind(this, member)}
