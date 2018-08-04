@@ -1,6 +1,7 @@
 import React from "react";
 import Homepage from "../components/Homepage";
 import AddPokemon from "./AddPokemon";
+import Loading from "../components/Loading";
 import { Switch, Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { removePokemonFromTeam, editPokemonInTeam } from "../store/actions/pokemon"
@@ -19,6 +20,7 @@ const Main = props => {
 					)
 				}}/>
 				<Route exact path="/addPokemon" render={props => {
+					debugger
 					return (
 						<AddPokemon 
 							{...props}
@@ -32,6 +34,7 @@ const Main = props => {
 						/>
 					)
 				}}/>
+				<Route exact path="/loading" render={ props => <Loading />} />
 			</Switch>
 		</div>
 	);

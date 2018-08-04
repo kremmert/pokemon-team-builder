@@ -33,8 +33,10 @@ export const addPokemonToTeam = id => {
 	return dispatch => {
 		return getPokemon(id)
 		.then( async function(pokemon) {
+			debugger
 			pokemon["moveList"] = [];
 			var updatedMoves = await getMoves(pokemon.moves);
+			debugger
 			pokemon.moves = updatedMoves;
 			dispatch( addPokemon(pokemon) );
 		}).catch( err => dispatch( addError(err.message) ));
@@ -42,8 +44,8 @@ export const addPokemonToTeam = id => {
 }
 
 export const removePokemonFromTeam = pokemon => {
-	return dispatch => {
-		dispatch(removePokemon(pokemon));
+	return async function(dispatch) {
+		await dispatch(removePokemon(pokemon));
 	}
 }
 

@@ -17,6 +17,8 @@ class SelectPokemon extends React.Component {
 			return;
 		}
 
+		this.props.history.push("/loading");
+		debugger
 		await this.props.addPokemonToTeam(e.id);
 		this.props.history.push("/addPokemon");
 	}

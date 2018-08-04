@@ -7,6 +7,7 @@ import MoveList from "../components/MoveList";
 import { capitalize } from "../services/api";
 
 const AddPokemon = ({pokemon, moveList}) => {
+	debugger
 	return (
 		<div className="container">
 			<h1 className="d-flex justify-content-center pokeName"> Moveset: {capitalize(pokemon.name)} </h1>

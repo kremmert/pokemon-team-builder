@@ -14,7 +14,8 @@ export default (state=DEFAULT_STATE, action) => {
 		case REMOVE_POKEMON:
 			var team = state.team.filter(val => val !== action.pokemon);
 			var num = state.numPokemon - 1;
-			return {...state, team, numPokemon: num }; 
+			debugger
+			return {...state, team, numPokemon: num, lastPokemon: {} }; 
 		case EDIT_POKEMON: 
 			return {...state, lastPokemon: action.pokemon};
 		case ADD_MOVE:

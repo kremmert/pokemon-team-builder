@@ -19,6 +19,7 @@ export async function getMoves(moves) {
 		movePromises.push(getMove(moves[i].move.url));
 	}
 	var allMoves = await Promise.all(movePromises).then(res => res).catch(err => err);
+	debugger
 	return allMoves;
 }
 

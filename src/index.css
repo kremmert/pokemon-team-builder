@@ -3,6 +3,22 @@ body {
 	padding-bottom: 200px
 }
 
+.loading-text {
+
+}
+
+.innerLoad {
+	position: absolute;
+	top: 40%;
+	transform: translateY(-50%);
+}
+
+.innerLoadText {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 /* Navbar styling */
 
 .navbar-header {
@@ -20,12 +36,28 @@ body {
 
 /* Team Member styling */
 
+.types {
+	/*top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	padding-bottom: 12px;*/
+	justify-content: center;
+}
+
 .card {
 	width: 12rem;
 }
 
 .card-title {
 	text-transform: capitalize;
+	/*margin-top: -50px;*/
+}
+
+.card-text {
+/*	padding: 5px;
+	padding-top: 10px;
+	position: absolute;*/
 }
 
 .move {
