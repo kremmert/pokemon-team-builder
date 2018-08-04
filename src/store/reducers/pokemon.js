@@ -9,7 +9,6 @@ const DEFAULT_STATE = {
 export default (state=DEFAULT_STATE, action) => {
 	switch(action.type) {
 		case ADD_POKEMON:
-			debugger
 			var teamNumber = state.numPokemon + 1;
 			return {...state, team: [...state.team, action.pokemon], numPokemon: teamNumber, lastPokemon: action.pokemon};
 		case REMOVE_POKEMON:

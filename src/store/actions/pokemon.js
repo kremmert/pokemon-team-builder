@@ -1,6 +1,6 @@
 import { ADD_POKEMON, REMOVE_POKEMON, EDIT_POKEMON, ADD_MOVE, REMOVE_MOVE } from "../actionTypes";
-import { addError, removeError } from "./errors";
-import { getPokemon } from "../../services/api";
+import { addError } from "./errors";
+import { getPokemon, getMoves } from "../../services/api";
 
 export const addPokemon = pokemon => ({
 	type: ADD_POKEMON,
@@ -32,9 +32,10 @@ export const removeMove = (pokemon, move) => ({
 export const addPokemonToTeam = id => {
 	return dispatch => {
 		return getPokemon(id)
-		.then( pokemon => {
-			pokemon["moveList"] = []
-			console.log(pokemon);
+		.then( async function(pokemon) {
+			pokemon["moveList"] = [];
+			var updatedMoves = await getMoves(pokemon.moves);
+			pokemon.moves = updatedMoves;
 			dispatch( addPokemon(pokemon) );
 		}).catch( err => dispatch( addError(err.message) ));
 	}

@@ -12,6 +12,7 @@ class MoveTableRow extends React.Component {
 		}
 		this.handleClick = this.handleClick.bind(this);
 		this.setActive = this.setActive.bind(this);
+		this.getDescription = this.getDescription.bind(this);
 	}
 
 	setActive(moveState) {
@@ -19,7 +20,7 @@ class MoveTableRow extends React.Component {
 
 		for(var i = 0; i < this.props.pokemon.moveList.length; i++) {
 			for(var j = 0; j < this.props.moves.length; j++) {
-				if(this.props.pokemon.moveList[i] === this.props.moves[j].move.name) {
+				if(this.props.pokemon.moveList[i] === this.props.moves[j].name) {
 					updatedMoveState[j] = true;
 				}
 			}
@@ -49,26 +50,30 @@ class MoveTableRow extends React.Component {
 		this.setState({ moveState });
 	}
 
+	getDescription(text_entries) {
+		return text_entries.filter( txt => txt.language.name === "en" );
+	}
+
 	componentWillMount() {
 		this.setActive(this.state.moveState);
 	}	
 
 	render() {
 		const { moves } = this.props;
-		const moveList = moves.map( (m, i) => (
+		const moveList = moves.map( (move, i) => (
 			<tr 
 				className={this.state.moveState[i] ? "table-info" : null}
-				value={m.move.name}
+				value={move.name}
 				onClick={this.handleClick}
 				key={i}
 			>
-				<th scope="row"> {capitalize(m.move.name)} </th>
-				<td> 2 </td>
-				<td> 3 </td>
-				<td> 4 </td>
-				<td> 5 </td>
-				<td> 6 </td>
-				<td> 7 </td>
+				<th scope="row"> {capitalize(move.name)} </th>
+				<td> <img src={getType(move.type.name)} alt={capitalize(move.type.name)} /> </td>
+				<td> <img src={getCategory(move.damage_class.name)} alt={capitalize(move.damage_class.name)} /> </td>
+				<td> {move.power} </td>
+				<td> {move.accuracy} </td>
+				<td> {move.pp} </td>
+				<td> {this.getDescription(move.flavor_text_entries)[0].flavor_text} </td>
 			</tr>
 		));
 		return (

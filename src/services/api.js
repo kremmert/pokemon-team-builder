@@ -13,6 +13,21 @@ export function getPokemon(id) {
 	});
 }
 
+export async function getMoves(moves) {
+	var movePromises = [];
+	for(var i = 0; i < moves.length; i++) {
+		movePromises.push(getMove(moves[i].move.url));
+	}
+	var allMoves = await Promise.all(movePromises).then(res => res).catch(err => err);
+	return allMoves;
+}
+
+async function getMove(name) {
+	return await P.resource(name)
+		.then(res => res)
+		.catch(err => err)
+}
+
 export function capitalize(str) {
 	var find = '-';
 	var re = new RegExp(find, 'g');

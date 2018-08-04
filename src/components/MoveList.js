@@ -6,7 +6,6 @@ const Move = ({moveName}) => (
 );
 
 const MoveList = props => {
-	debugger
 	const {moves} = props;
 	const moveList = moves.map( (move,i) => (
 		<Move 

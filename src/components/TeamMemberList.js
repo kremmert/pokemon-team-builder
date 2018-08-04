@@ -8,6 +8,7 @@ const TeamMemberList = ({ team, removePokemon, editPokemon }) => {
 		<TeamMember
 			name={member.name}
 			sprite={member.sprites.front_default}
+			types={member.types}
 			moves={member.moveList}
 			removePokemon={removePokemon.bind(this, member)}
 			editPokemon={editPokemon.bind(this, member)}
