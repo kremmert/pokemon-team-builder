@@ -20,6 +20,12 @@ import Physical from "../images/categories/Physical.png";
 import Special from "../images/categories/Special.png";
 import Status from "../images/categories/Status.png";
 
+export const TypeArray = [
+							Normal, Fighting, Flying, Poison, Ground,
+						  	Rock, Bug, Ghost, Steel, Fire, Water, Grass, Electric,
+						  	Psychic, Ice, Dragon, Dark, Fairy
+						 ]
+
 export const getType = type => {
 	switch(type) {
 		case "bug":

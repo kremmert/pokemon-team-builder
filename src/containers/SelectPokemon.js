@@ -10,30 +10,40 @@ class SelectPokemon extends React.Component {
 		super(props)
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.state = {
+			value: "",
+			id: 0
+		}
 	}
 
-	async handleChange(e) {
-		if(this.props.numPokemon >= 6) {
+	handleChange(e) {
+		this.setState({value: e.value, id: e.id});
+	}
+
+	async handleSubmit(e) {
+		e.preventDefault();
+		if(this.props.numPokemon >= 6 || this.state.id === 0) {
 			return;
 		}
 
 		this.props.history.push("/loading");
-		debugger
-		await this.props.addPokemonToTeam(e.id);
+		await this.props.addPokemonToTeam(this.state.id);
 		this.props.history.push("/addPokemon");
-	}
-
-	handleSubmit(e) {
 	}
 
 	render() {
 		return (
-			<Select 
-				id="select"
-				placeholder={"Choose Your Pok\u00E9mon!"}
-				options={Options} 
-				onChange={this.handleChange}
-			/>
+			<form onSubmit={this.handleSubmit}>
+				<Select 
+					id="select"
+					placeholder={"Choose Your Pok\u00E9mon!"}
+					options={Options} 
+					onChange={this.handleChange}
+				/>
+				<button type="submit" className="add btn btn-primary btn-block">
+					{"Add Pok\u00E9mon!"}
+				</button>
+			</form>
 		);
 	}
 }

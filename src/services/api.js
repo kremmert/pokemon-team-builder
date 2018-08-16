@@ -9,17 +9,19 @@ export function getPokemon(id) {
 	return new Promise((resolve, reject) => {
 		return P.getPokemonByName(id)
 		.then(res => { return resolve(res) })
-		.catch(err => { return reject(err.response.data.error) });
+		.catch(err => { return reject(err) });
 	});
 }
 
 export async function getMoves(moves) {
+	if("type" in moves[0]) {
+		return moves;
+	}
 	var movePromises = [];
 	for(var i = 0; i < moves.length; i++) {
 		movePromises.push(getMove(moves[i].move.url));
 	}
 	var allMoves = await Promise.all(movePromises).then(res => res).catch(err => err);
-	debugger
 	return allMoves;
 }
 

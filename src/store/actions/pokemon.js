@@ -33,13 +33,11 @@ export const addPokemonToTeam = id => {
 	return dispatch => {
 		return getPokemon(id)
 		.then( async function(pokemon) {
-			debugger
 			pokemon["moveList"] = [];
 			var updatedMoves = await getMoves(pokemon.moves);
-			debugger
 			pokemon.moves = updatedMoves;
 			dispatch( addPokemon(pokemon) );
-		}).catch( err => dispatch( addError(err.message) ));
+		}).catch( err => dispatch( addError(err) ));
 	}
 }
 

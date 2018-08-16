@@ -20,7 +20,6 @@ const Main = props => {
 					)
 				}}/>
 				<Route exact path="/addPokemon" render={props => {
-					debugger
 					return (
 						<AddPokemon 
 							{...props}

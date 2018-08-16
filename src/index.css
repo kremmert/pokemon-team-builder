@@ -19,6 +19,15 @@ body {
 	transform: translateY(-50%);
 }
 
+.typeList {
+	margin-top: 20px;
+	background-color: rgba(0,0,0,0.05);
+}
+
+.typeCaption {
+	caption-side: top;
+}
+
 /* Navbar styling */
 
 .navbar-header {
@@ -83,4 +92,8 @@ body {
 
 #select {
 	padding-top: 20px;
+}
+
+.add {
+	margin-top: 10px;
 }
